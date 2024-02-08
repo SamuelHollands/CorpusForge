@@ -4,7 +4,7 @@ setup(
     name='CorpusForge',
     version='0.0.1',    
     description='Corpus enrichment, processing, and formatting in Python',
-    url='https://github.com/{my_github}',
+    url='https://github.com/SamuelHollands/CorpusForge',
     author='Samuel Hollands',
     author_email='shollands1@sheffield.ac.uk',
     license='GNU GENERAL PUBLIC LICENSE',
