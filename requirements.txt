@@ -9,3 +9,4 @@ tqdm
 bs4
 lxml
 scikit-learn
+pyarrow
