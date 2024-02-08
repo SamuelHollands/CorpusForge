@@ -4,7 +4,7 @@
 # Contact: shollands1@sheffield.ac.uk #
 
 import argparse
-from SpaCy_Pipeline_Class import spacyPipeline
+from CorpusForge.SpaCy_Pipeline_Class import spacyPipeline
 
 def main():
     parser = argparse.ArgumentParser(description='Print parameters with -help option')
