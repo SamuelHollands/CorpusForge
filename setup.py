@@ -1,4 +1,28 @@
 from setuptools import setup
+from setuptools.command.install import install
+from setuptools.command.develop import develop
+
+class InstallCommand(install):
+    def run(self):
+        # Run the default installation first
+        install.run(self)
+
+        # Download the Spacy model during the installation
+        self.execute(_post_install, (self.install_lib,),
+                     msg="Running post-install task")
+
+class DevelopCommand(develop):
+    def run(self):
+        # Run the default develop command first
+        develop.run(self)
+
+        # Download the Spacy model during the development installation
+        self.execute(_post_install, (self.install_lib,),
+                     msg="Running post-install task")
+
+def _post_install(install_lib):
+    import spacy
+    spacy.cli.download("en_core_web_trf")
 
 setup(
     name='CorpusForge',
@@ -11,7 +35,7 @@ setup(
     packages=['CorpusForge'],
     install_requires=['spacy',
                       'pymusas',                     
-                      'https://github.com/UCREL/pymusas-models/releases/download/en_dual_none_contextual-0.3.3/en_dual_none_contextual-0.3.3-py3-none-any.whl',
+                      'en_dual_none_contextual @ git+ssh://git@github.com/UCREL/pymusas-models/releases/download/en_dual_none_contextual-0.3.3/en_dual_none_contextual-0.3.3-py3-none-any.whl',
                       'humanize',
                       'numpy',
                       'pandas',
@@ -20,6 +44,13 @@ setup(
                       'bs4',
                       'lxml',
                       'scikit-learn'],
+    setup_requires=[
+        'spacy',
+    ],
+    cmdclass={
+        'install': InstallCommand,
+        'develop': DevelopCommand,
+    },
 
     classifiers=[
         'Development Status :: 2 - Testing',

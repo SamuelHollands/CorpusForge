@@ -1,0 +1,11 @@
+spacy
+pymusas
+en_dual_none_contextual@ git+ssh://git@github.com/UCREL/pymusas-models/releases/download/en_dual_none_contextual-0.3.3/en_dual_none_contextual-0.3.3-py3-none-any.whl
+humanize
+numpy
+pandas
+openpyxl
+tqdm
+bs4
+lxml
+scikit-learn

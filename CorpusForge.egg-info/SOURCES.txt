@@ -1,0 +1,11 @@
+LICENSE
+README.rst
+setup.py
+CorpusForge/CorpusForge.py
+CorpusForge/SpaCy_Pipeline_Class.py
+CorpusForge/__init__.py
+CorpusForge.egg-info/PKG-INFO
+CorpusForge.egg-info/SOURCES.txt
+CorpusForge.egg-info/dependency_links.txt
+CorpusForge.egg-info/requires.txt
+CorpusForge.egg-info/top_level.txt

@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: CorpusForge
+Version: 0.0.1
+Summary: Corpus enrichment, processing, and formatting in Python
+Home-page: https://github.com/SamuelHollands/CorpusForge
+Author: Samuel Hollands
+Author-email: shollands1@sheffield.ac.uk
+License: GNU GENERAL PUBLIC LICENSE
+Classifier: Development Status :: 2 - Testing
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: GNU GENERAL PUBLIC LICENSE
+Classifier: Operating System :: MacOS :: Linux
+Classifier: Programming Language :: Python :: 3.9
+License-File: LICENSE
+Requires-Dist: spacy
+Requires-Dist: pymusas
+Requires-Dist: en_dual_none_contextual@ git+ssh://git@github.com/UCREL/pymusas-models/releases/download/en_dual_none_contextual-0.3.3/en_dual_none_contextual-0.3.3-py3-none-any.whl
+Requires-Dist: humanize
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: openpyxl
+Requires-Dist: tqdm
+Requires-Dist: bs4
+Requires-Dist: lxml
+Requires-Dist: scikit-learn
