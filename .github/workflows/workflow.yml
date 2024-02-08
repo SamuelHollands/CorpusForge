@@ -23,6 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           python -m pip install -r requirements.txt
+          python -m spacy download en_core_web_trf
       #- name: Test with pytest
       #  run: pytest CorpusForge/CorpusForge.py --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
       #- name: Upload pytest test results
