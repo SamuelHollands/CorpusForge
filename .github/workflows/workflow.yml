@@ -1,6 +1,7 @@
 name: CorpusForge
 
-on: [push]
+on:
+  push:
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python # Set Python version
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       # Install pip and pytest
