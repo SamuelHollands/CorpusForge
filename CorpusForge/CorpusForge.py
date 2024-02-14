@@ -42,7 +42,9 @@ def main():
     return filtered_args
 
 if __name__ == '__main__':
-    pipeline = spacyPipeline(**main())
+    program_args = main()
+    
+    pipeline = spacyPipeline(**program_args)
     if pipeline.init_status == False:
         pass
     elif pipeline.start_benchmark == True:
