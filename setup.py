@@ -26,11 +26,11 @@ def _post_install(install_lib):
 
 setup(
     name='CorpusForge',
-    version='0.0.1',    
+    version='0.0.2',    
     description='Corpus enrichment, processing, and formatting in Python',
-    url='https://github.com/SamuelHollands/CorpusForge',
-    author='Samuel Hollands',
-    author_email='shollands1@sheffield.ac.uk',
+    url='https://github.com/hannaschmueck/CorpusForge',
+    author='Samuel Hollands, Hanna Schmueck',
+    author_email='shollands1@sheffield.ac.uk, h.schmueck@lancaster.ac.uk',
     license='GNU GENERAL PUBLIC LICENSE',
     packages=['CorpusForge'],
     install_requires=['spacy',

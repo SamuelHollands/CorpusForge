@@ -1,3 +1,9 @@
+# CASS SpaCy Corpus Ingestion Pipeline #
+# Institution: Lancaster University #
+# Author: Samuel Hollands #
+# Contact: shollands1@sheffield.ac.uk #
+
+
 import os
 import sys
 import zlib

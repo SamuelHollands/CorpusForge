@@ -1,7 +1,7 @@
-# CASS SpaCy Corpus Ingestion Pipeline #
+# CASS CorpusForge #
 # Institution: Lancaster University #
-# Author: Samuel Hollands #
-# Contact: shollands1@sheffield.ac.uk #
+# Author: Samuel Hollands & Hanna Schmueck #
+# Contact: shollands1@sheffield.ac.uk & h.schmueck@lancaster.ac.uk #
 
 import argparse
 from CorpusForge.SpaCy_Pipeline_Class import spacyPipeline
