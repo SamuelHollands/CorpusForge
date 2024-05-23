@@ -5,6 +5,7 @@
 
 import argparse
 from CorpusForge.SpaCy_Pipeline_Class import spacyPipeline
+from CorpusForge.Fict_Body_Extraction_Class import fictBodyExtraction
 
 def main():
     parser = argparse.ArgumentParser(description='Print parameters with -help option')
