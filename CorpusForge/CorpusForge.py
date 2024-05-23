@@ -52,5 +52,3 @@ if __name__ == '__main__':
         pipeline.benchmark()
     else:
         pipeline.job_handler()
-
-
