@@ -3,6 +3,11 @@
 # Author: Samuel Hollands & Hanna Schmueck #
 # Contact: shollands1@sheffield.ac.uk & h.schmueck@lancaster.ac.uk #
 
+# TODO Work on universal input format, e.g. utf-8 strings extracted by filename for docx,pdf,txt,epub.
+# TODO Work on universal output format, including a report showing which processes have been called/what parameters have been used.
+# TODO Re-structure main to allow for selecting the desired pipeline component.
+
+
 import argparse
 from CorpusForge.SpaCy_Pipeline_Class import spacyPipeline
 from CorpusForge.Fict_Body_Extraction_Class import fictBodyExtraction
@@ -52,3 +57,10 @@ if __name__ == '__main__':
         pipeline.benchmark()
     else:
         pipeline.job_handler()
+
+
+
+# splitter = fictBodyExtraction(folder_path='/path/to/your/folder')
+# splitter.get_files()
+# split_dataframe = splitter.split_body()
+
