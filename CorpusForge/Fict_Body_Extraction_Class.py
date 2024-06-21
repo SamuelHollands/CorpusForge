@@ -17,19 +17,6 @@ class fictBodyExtraction:
         self.splitfiles = {}
         self.tooshortfiles = {}
 
-    def get_files(self):
-        for path, subdirs, files in os.walk(self.folder_path):
-            for file in files:
-                if file.endswith(".txt") or file.endswith('.TXT'):
-                    self.txtfilelist.append(os.path.join(path, file))
-                if file.endswith(".epub") or file.endswith('.EPUB') or file.endswith('.Epub'):
-                    self.epubfilelist.append(os.path.join(path, file))
-
-    def chapter_to_str(chapter):
-        soup = BeautifulSoup(chapter.get_body_content(), 'html.parser')
-        text = [para.get_text() for para in soup.find_all('p')]
-        return ' '.join(text)
-
     def startchecker(needles, haystackindex, paragraphs):
         window_size = 20
         testing = ' '.join(paragraphs[haystackindex: haystackindex + window_size]).lower()
