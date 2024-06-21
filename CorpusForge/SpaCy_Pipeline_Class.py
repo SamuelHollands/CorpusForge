@@ -18,7 +18,9 @@ from datetime import timedelta
 from bs4 import BeautifulSoup as bs4
 from sklearn.linear_model import LinearRegression
 from concurrent.futures import ProcessPoolExecutor
-
+import xml.etree.ElementTree as ET
+from ebooklib import epub
+import html
 
 
 class spacyPipeline:
@@ -230,9 +232,50 @@ class spacyPipeline:
         else:
             print("### Initialisation Failed - See Warnings for Details ###")
     
+    
+    # EPUB - Chapter to string converter, TEI from EPUB
+    def str_from_epub(file):
+        def chapter_to_str(chapter):
+            soup = bs4(chapter.get_body_content(), 'html.parser')
+            text = [para.get_text() for para in soup.find_all('p')]
+            return ' '.join(text)
+        root = ET.Element('TEI xmlns="http://www.tei-c.org/ns/1.0')
+        header = ET.SubElement(root, 'teiHeader')
+        book = epub.read_epub(file)
+        try:
+            title = book.get_metadata('DC', 'title')[0][0]
+        except:
+            title = "NA"
+        try:
+            creator = book.get_metadata('DC', 'creator')[0][0]
+        except:
+            creator = "NA"
+
+        fileDesc = ET.SubElement(header, 'fileDesc')
+        titleStmt = ET.SubElement(fileDesc, 'titleStmt')
+        title_element = ET.SubElement(titleStmt, 'title')
+        title_element.text = str(title)
+        respStmt = ET.SubElement(titleStmt, 'respStmt')
+        name_element = ET.SubElement(respStmt, 'name')
+        name_element.text = str(creator)
+
+        text_element = ET.SubElement(root, 'text')
+        body_element = ET.SubElement(text_element, 'body')
+        items = list(book.get_items_of_type(ebooklib.ITEM_DOCUMENT))
+        count = 0
+        for item in items:
+            if len(chapter_to_str(item)) >1:
+                count +=1
+                text_element = ET.SubElement(body_element, "section {}".format(str(count)))
+                text_element.text = html.escape(str(chapter_to_str(item)))
+        xml_string = ET.tostring(root, encoding="utf-8").decode("utf-8")
+        return xml_string
+
     def process_file(self, input_file):
         file_type = self.get_filetype(input_file)
         is_xml = file_type == ".xml"
+        is_epub = file_type == ".epub"
+
         if self.flat_output_dir:
             output_file = os.path.join(self.output_dir, input_file.split(os.sep)[-1].lower().replace(file_type, ".xml"))
         else:
@@ -245,8 +288,13 @@ class spacyPipeline:
         if self.skip_processed_files and os.path.exists(output_file):
             return None
 
-        with open(input_file, errors=self.errors) as file_read:
-            content = file_read.read()
+        if is_xml:
+            with open(input_file, errors=self.errors) as file_read:
+                content = file_read.read()
+        
+        # converts epub to string
+        elif is_epub:
+            content = self.str_from_epub(input_file)
 
         soup = self.build_xml(input_file, content, is_xml)
         self.latest_file = soup.prettify()
